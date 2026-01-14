@@ -39,7 +39,7 @@ export default async function Home() {
                 >
                   <p className="text-zinc-800 dark:text-zinc-200">{note.content}</p>
                   <span className="text-xs text-zinc-400 mt-2 block">
-                    {new Date(note.createdAt).toLocaleString()}
+                    2025-01-01 12:00 PM
                   </span>
                 </li>
               ))}
