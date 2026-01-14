@@ -23,6 +23,15 @@ export class Storage {
       .returning();
     return updatedNote;
   }
+
+  async updateNote(id: number, update: Partial<InsertNote>): Promise<Note | undefined> {
+    const [updatedNote] = await db
+      .update(notes)
+      .set(update)
+      .where(eq(notes.id, id))
+      .returning();
+    return updatedNote;
+  }
 }
 
 export const storage = new Storage();

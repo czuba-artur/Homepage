@@ -22,3 +22,14 @@ export async function toggleNoteCompletion(id: number) {
   await storage.toggleNoteCompletion(id);
   revalidatePath("/");
 }
+
+export async function updateNote(id: number, formData: FormData) {
+  const content = formData.get("content") as string;
+  const dueDateStr = formData.get("dueDate") as string;
+  if (!content) return;
+
+  const dueDate = dueDateStr ? new Date(dueDateStr) : undefined;
+
+  await storage.updateNote(id, { content, dueDate });
+  revalidatePath("/");
+}
