@@ -30,6 +30,15 @@ task = "shell.exec"
 args = "npm run dev -- -p 5000"
 waitForPort = 5000
 
+[[workflows.workflow]]
+name = "Run sh"
+mode = "sequential"
+author = 53090659
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sh"
+
 [[ports]]
 localPort = 5000
 externalPort = 80
