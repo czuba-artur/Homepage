@@ -15,7 +15,7 @@ export default async function Home() {
         <NoteForm />
 
         <div className="flex flex-col gap-4">
-          <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">TODO</h2>
+          <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">Taksa</h2>
           {notes.length === 0 ? (
             <p className="text-zinc-500 dark:text-zinc-400 italic">No notes yet.</p>
           ) : (
