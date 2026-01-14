@@ -59,6 +59,12 @@ export default function NoteForm() {
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      e.currentTarget.form?.requestSubmit();
+      return;
+    }
+
     // Only trigger on actual character input (not special keys)
     if (e.key.length === 1) {
       // Small delay to let the character be added first
