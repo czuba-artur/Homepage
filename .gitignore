@@ -1,0 +1,9 @@
+.cache/
+.local/
+.replit
+replit.nix
+*.pyc
+__pycache__/
+node_modules/
+.env
+.env.local
