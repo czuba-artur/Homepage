@@ -8,7 +8,7 @@ export default async function Home() {
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-zinc-50 via-zinc-100/50 to-zinc-50 font-sans dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 p-8">
       <main className="flex w-full max-w-xl flex-col gap-8 bg-white/80 backdrop-blur-sm p-8 shadow-2xl rounded-2xl dark:bg-zinc-900/80 border border-zinc-200/50 dark:border-zinc-800/50">
         <header className="space-y-2">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-zinc-900 via-zinc-700 to-zinc-900 dark:from-zinc-50 dark:via-zinc-200 dark:to-zinc-50 bg-clip-text text-transparent">Hello Replit!</h1>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-zinc-900 via-zinc-700 to-zinc-900 dark:from-zinc-50 dark:via-zinc-200 dark:to-zinc-50 bg-clip-text text-transparent">Hello Replit...</h1>
           <p className="text-zinc-600 dark:text-zinc-400">Keep track of your thoughts below.</p>
         </header>
 
