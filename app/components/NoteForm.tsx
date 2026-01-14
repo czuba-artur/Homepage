@@ -115,6 +115,17 @@ export default function NoteForm() {
           required
         />
       </div>
+      <div className="flex flex-col gap-2">
+        <label htmlFor="dueDate" className="text-sm font-medium text-zinc-700 dark:text-zinc-300 ml-1">
+          Termin wykonania (opcjonalnie)
+        </label>
+        <input
+          type="datetime-local"
+          name="dueDate"
+          id="dueDate"
+          className="w-full p-3 rounded-xl border-2 border-zinc-200 bg-white dark:bg-zinc-800/50 dark:border-zinc-700 dark:text-zinc-50 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-all duration-200 shadow-sm"
+        />
+      </div>
       <button
         type="submit"
         className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-lg shadow-red-500/25 hover:shadow-xl hover:shadow-red-500/40 hover:scale-[1.02] active:scale-[0.98]"

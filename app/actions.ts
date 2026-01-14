@@ -5,9 +5,12 @@ import { revalidatePath } from "next/cache";
 
 export async function addNote(formData: FormData) {
   const content = formData.get("content") as string;
+  const dueDateStr = formData.get("dueDate") as string;
   if (!content) return;
 
-  await storage.createNote({ content });
+  const dueDate = dueDateStr ? new Date(dueDateStr) : undefined;
+
+  await storage.createNote({ content, dueDate });
   revalidatePath("/");
 }
 

@@ -6,6 +6,7 @@ export const notes = pgTable("notes", {
   id: serial("id").primaryKey(),
   content: text("content").notNull(),
   completed: boolean("completed").default(false).notNull(),
+  dueDate: timestamp("due_date"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
