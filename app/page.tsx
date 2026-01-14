@@ -1,4 +1,4 @@
-import { addNote, getNotes } from "./actions";
+import { addNote, getNotes, toggleNoteCompletion } from "./actions";
 
 export default async function Home() {
   const notes = await getNotes();
@@ -35,12 +35,45 @@ export default async function Home() {
               {notes.map((note) => (
                 <li
                   key={note.id}
-                  className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-zinc-100 dark:border-zinc-700"
+                  className={`p-4 rounded-lg border transition-all flex items-center justify-between gap-4 ${
+                    note.completed
+                      ? "bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 opacity-60"
+                      : "bg-zinc-50 dark:bg-zinc-800 border-zinc-100 dark:border-zinc-700"
+                  }`}
                 >
-                  <p className="text-zinc-800 dark:text-zinc-200">{note.content}</p>
-                  <span className="text-xs text-zinc-400 mt-2 block">
-                    {new Date(note.createdAt).toLocaleString()}
-                  </span>
+                  <div className="flex-1 min-w-0">
+                    <p className={`text-zinc-800 dark:text-zinc-200 break-words ${note.completed ? "line-through" : ""}`}>
+                      {note.content}
+                    </p>
+                    <span className="text-xs text-zinc-400 mt-2 block">
+                      {new Date(note.createdAt).toLocaleString()}
+                    </span>
+                  </div>
+                  <form action={toggleNoteCompletion.bind(null, note.id)}>
+                    <button
+                      type="submit"
+                      className={`h-6 w-6 rounded-md border flex items-center justify-center transition-colors ${
+                        note.completed
+                          ? "bg-green-500 border-green-600 text-white"
+                          : "bg-white dark:bg-zinc-700 border-zinc-300 dark:border-zinc-600"
+                      }`}
+                    >
+                      {note.completed && (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          className="w-4 h-4"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      )}
+                    </button>
+                  </form>
                 </li>
               ))}
             </ul>

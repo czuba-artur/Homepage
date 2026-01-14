@@ -1,6 +1,6 @@
 import { notes, type Note, type InsertNote } from "../shared/schema";
 import { db } from "./db";
-import { desc } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 
 export class Storage {
   async getNotes(): Promise<Note[]> {
@@ -10,6 +10,18 @@ export class Storage {
   async createNote(insertNote: InsertNote): Promise<Note> {
     const [note] = await db.insert(notes).values(insertNote).returning();
     return note;
+  }
+
+  async toggleNoteCompletion(id: number): Promise<Note | undefined> {
+    const [note] = await db.select().from(notes).where(eq(notes.id, id));
+    if (!note) return undefined;
+
+    const [updatedNote] = await db
+      .update(notes)
+      .set({ completed: !note.completed })
+      .where(eq(notes.id, id))
+      .returning();
+    return updatedNote;
   }
 }
 

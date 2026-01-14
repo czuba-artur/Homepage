@@ -1,10 +1,11 @@
-import { pgTable, text, serial, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, timestamp, boolean } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
 export const notes = pgTable("notes", {
   id: serial("id").primaryKey(),
   content: text("content").notNull(),
+  completed: boolean("completed").default(false).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

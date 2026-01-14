@@ -14,3 +14,8 @@ export async function addNote(formData: FormData) {
 export async function getNotes() {
   return await storage.getNotes();
 }
+
+export async function toggleNoteCompletion(id: number) {
+  await storage.toggleNoteCompletion(id);
+  revalidatePath("/");
+}
