@@ -1,33 +1,21 @@
-import { addNote, getNotes, toggleNoteCompletion } from "./actions";
+import { getNotes, toggleNoteCompletion } from "./actions";
+import NoteForm from "./components/NoteForm";
 
 export default async function Home() {
   const notes = await getNotes();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black p-8">
-      <main className="flex w-full max-w-xl flex-col gap-8 bg-white p-8 shadow-sm rounded-xl dark:bg-zinc-900">
-        <header>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">Hello Replit!</h1>
-          <p className="text-zinc-500 dark:text-zinc-400">Keep track of your thoughts below.</p>
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-zinc-50 via-zinc-100/50 to-zinc-50 font-sans dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 p-8">
+      <main className="flex w-full max-w-xl flex-col gap-8 bg-white/80 backdrop-blur-sm p-8 shadow-2xl rounded-2xl dark:bg-zinc-900/80 border border-zinc-200/50 dark:border-zinc-800/50">
+        <header className="space-y-2">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-zinc-900 via-zinc-700 to-zinc-900 dark:from-zinc-50 dark:via-zinc-200 dark:to-zinc-50 bg-clip-text text-transparent">Hello Replit!</h1>
+          <p className="text-zinc-600 dark:text-zinc-400">Keep track of your thoughts below.</p>
         </header>
 
-        <form action={addNote} className="flex flex-col gap-3">
-          <textarea
-            name="content"
-            placeholder="Write a note..."
-            className="w-full min-h-[100px] p-3 rounded-lg border border-zinc-200 bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-            required
-          />
-          <button
-            type="submit"
-            className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
-          >
-            Save Note
-          </button>
-        </form>
+        <NoteForm />
 
         <div className="flex flex-col gap-4">
-          <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">Recent Notes</h2>
+          <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">Recent Notes</h2>
           {notes.length === 0 ? (
             <p className="text-zinc-500 dark:text-zinc-400 italic">No notes yet.</p>
           ) : (
@@ -35,10 +23,10 @@ export default async function Home() {
               {notes.map((note) => (
                 <li
                   key={note.id}
-                  className={`p-4 rounded-lg border transition-all flex items-center justify-between gap-4 ${
+                  className={`p-4 rounded-xl border-2 transition-all duration-200 flex items-center justify-between gap-4 hover:shadow-lg hover:scale-[1.01] ${
                     note.completed
-                      ? "bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 opacity-60"
-                      : "bg-zinc-50 dark:bg-zinc-800 border-zinc-100 dark:border-zinc-700"
+                      ? "bg-zinc-50/50 dark:bg-zinc-800/30 border-zinc-200 dark:border-zinc-700 opacity-60"
+                      : "bg-white dark:bg-zinc-800/50 border-zinc-200 dark:border-zinc-700 shadow-sm"
                   }`}
                 >
                   <div className="flex-1 min-w-0">
@@ -52,10 +40,10 @@ export default async function Home() {
                   <form action={toggleNoteCompletion.bind(null, note.id)}>
                     <button
                       type="submit"
-                      className={`h-6 w-6 rounded-md border flex items-center justify-center transition-colors ${
+                      className={`h-7 w-7 rounded-lg border-2 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 ${
                         note.completed
-                          ? "bg-green-500 border-green-600 text-white"
-                          : "bg-white dark:bg-zinc-700 border-zinc-300 dark:border-zinc-600"
+                          ? "bg-gradient-to-br from-green-500 to-green-600 border-green-600 text-white shadow-lg shadow-green-500/30"
+                          : "bg-white dark:bg-zinc-700 border-zinc-300 dark:border-zinc-600 hover:border-green-500 dark:hover:border-green-500"
                       }`}
                     >
                       {note.completed && (
